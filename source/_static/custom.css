@@ -1,0 +1,10 @@
+.wy-breadcrumbs-home {
+    display: inline-block !important;
+    background: url("img/compress.png") no-repeat center center !important;
+    width: 32px;
+    height: 32px;
+}
+
+body[data-page-name="index"] .toctree-wrapper {
+    display: none;
+}

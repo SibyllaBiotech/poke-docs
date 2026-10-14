@@ -80,8 +80,6 @@ If the input is a long list of different files, they can be put in a text file `
 
    poke -dvp list.txt 
 
-.. important:: 
-   BISOGNA INSERIRE UN ESEMPIO DI COME FANNO RIPORTATE LE COSE NEL FILE .TXT 
 
 
 Options

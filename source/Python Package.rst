@@ -23,6 +23,3 @@ The scouter can be used though python to achieve maximum flexibility:
 
    When the scouter is used from command line, the option ``-k`` can be used to save pockets in a pickle file. 
 
-.. important::
-
-   COME MAI QUESTA INFORMAZIONE E' RIPORTATA QUI?

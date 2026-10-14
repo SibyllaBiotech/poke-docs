@@ -2,7 +2,7 @@
 Python Package
 ==============
 
-The scouter can be used though python to achieve maximum flexibility:
+The scouter can be used through Python to achieve maximum flexibility:
 
 .. code-block:: python
 

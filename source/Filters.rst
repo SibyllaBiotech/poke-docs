@@ -5,7 +5,7 @@ Filters
 Atom filtering
 ==============
 
-It is possible to use only a subset of the atoms in the input file to compute energy maps. The atoms can be selected using the ``-ss`` flag anmd a selection string. The selection string must be in the format of the ``MDAnalysis`` package. For example if the pdb file contains water molecule, the protein can be selected using:
+It is possible to use only a subset of the atoms in the input file to compute energy maps. The atoms can be selected using the ``-ss`` flag and a selection string. The selection string must be in the format of the ``MDAnalysis`` package. For example if the pdb file contains water molecules, the protein can be selected using:
 
 .. code-block:: bash
    

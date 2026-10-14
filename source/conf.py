@@ -9,7 +9,20 @@
 project = 'poké'
 copyright = '2025, Sibylla Biotech'
 author = 'Sibylla Biotech'
-release = '1.0.0'
+from importlib.metadata import PackageNotFoundError, version as _installed_version
+
+# Distribution name of the Poké package these docs are built against.
+# The version shown on the site is read from the installed package, never typed by hand.
+DIST_NAME = "poke"
+
+try:
+    release = _installed_version(DIST_NAME)      # full version, e.g. "0.1.0"
+except PackageNotFoundError as exc:
+    raise SystemExit(
+        f"The '{DIST_NAME}' package is not installed in this environment. "
+        "The docs read their version from it: run `pip install -e ../poke` first."
+    ) from exc
+version = ".".join(release.split(".")[:2])       # short version, e.g. "0.1"
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration

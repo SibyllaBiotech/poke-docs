@@ -1,0 +1,10 @@
+# Sphinx output (rebuilt on every build)
+build/
+source/_generated/
+
+# Python
+__pycache__/
+.venv/
+
+# macOS
+.DS_Store

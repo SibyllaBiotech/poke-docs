@@ -1,0 +1,8 @@
+# Python packages needed to build the Poké user guide.
+# Install Poké itself separately (until the PyPI release): pip install -e ../poke
+sphinx
+sphinx-rtd-theme
+sphinxcontrib-bibtex
+sphinx-argparse
+sphinx-copybutton
+myst-parser

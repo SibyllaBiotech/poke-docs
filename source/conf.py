@@ -6,9 +6,10 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'poké'
-copyright = '2025, Sibylla Biotech'
-author = 'Sibylla Biotech'
+project = 'Poké'
+copyright = ''          # no copyright line in the page footer; the licence is in LICENSE
+html_show_copyright = False
+author = 'Erika Primavera, Emilia Cassese and Sibylla Biotech'
 from importlib.metadata import PackageNotFoundError, version as _installed_version
 
 # Distribution name of the Poké package these docs are built against.

@@ -28,6 +28,12 @@ The code lives in its own repository: https://github.com/SibyllaBiotech/poke
    open build/html/index.html       # Linux: xdg-open, Windows: start
    ```
 
+4. Run the code examples in the guide (they execute against the installed Poké):
+
+   ```
+   sphinx-build -b doctest source build/doctest
+   ```
+
    `-W` turns warnings into errors, so a broken link or a page missing from the index fails
    the build instead of going unnoticed.
 

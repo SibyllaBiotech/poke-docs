@@ -10,6 +10,7 @@ project = 'Poké'
 copyright = ''          # no copyright line in the page footer; the licence is in LICENSE
 html_show_copyright = False
 author = 'Erika Primavera, Emilia Cassese and Sibylla Biotech'
+import pathlib
 from importlib.metadata import PackageNotFoundError, version as _installed_version
 
 # Distribution name of the Poké package these docs are built against.
@@ -30,7 +31,11 @@ version = ".".join(release.split(".")[:2])       # short version, e.g. "0.1"
 
 extensions = [
     "sphinxcontrib.bibtex",
+    "sphinx.ext.doctest",      # `sphinx-build -b doctest` runs the code examples in the guide
 ]
+# Code examples run inside source/_static/md, where the sample structure lives, so they can
+# refer to it simply as structure.pdb.
+doctest_global_setup = f"import os; os.chdir({str(pathlib.Path(__file__).parent / '_static' / 'md')!r})"
 bibtex_bibfiles = ["refs.bib"]
 bibtex_default_style = "unsrt"
 bibtex_reference_style = "super"

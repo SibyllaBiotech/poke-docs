@@ -101,7 +101,7 @@ An example of two pockets that share the same trajectory frame are shown here:
     </div>
   </div>
 
-  <script src="https://unpkg.com/ngl@latest/dist/ngl.js"></script>
+  <script src="_static/ngl-2.5.0.js"></script>
   <script src="_static/pocket-viewer.js"></script>
   <script>
     pokeViewer({

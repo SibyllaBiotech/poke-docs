@@ -44,3 +44,7 @@ released under the [Creative Commons Attribution 4.0 International licence](LICE
 you credit Sibylla Biotech. Code snippets shown in the documentation may also be used under
 the MIT licence of [Poké](https://github.com/SibyllaBiotech/poke), so no attribution is
 needed to paste an example into your own script.
+
+The interactive viewers in the tutorial use the [NGL](https://github.com/nglviewer/ngl)
+library, bundled in `source/_static/` under its own MIT licence (see
+`ngl-2.5.0-LICENSE.txt` next to it).

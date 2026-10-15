@@ -1,0 +1,12 @@
+/* Poké documentation: small adjustments on top of the theme. */
+
+/* Version line in the sidebar: a little air between it and the search box. */
+.wy-side-nav-search > div.version {
+    margin-top: 0.2em;
+    margin-bottom: 1.4em;
+}
+
+/* Home page: air between the banner and the first sentence. */
+.rst-content img.banner {
+    margin-bottom: 2em;
+}

@@ -21,7 +21,9 @@ Welcome to Poké documentation
    :alt: banner
    :width: 800px
    :align: center
+   :class: banner
 
+This guide documents Poké |release|.
 
 **Poké scouter** is a blazing fast pocket scouter based on CHARMM forcefield. It uses an energy-based approach to identify the low-energy regions of the protein and it is able to compute a set of descriptors for each pocket useful to characterize it. The descriptors are used then by a neural network model to assign a druggability score to the pocket.
 

@@ -91,7 +91,7 @@ An example of two pockets that share the same trajectory frame are shown here:
   <div style="display:flex; gap:16px; align-items:flex-start;">
     <div id="viewport1" style="width:800px; height:600px; border:1px solid #ccc;"></div>
 
-    <div id="menu" style="font-family:Arial, sans-serif;">
+    <div class="pocket-viewer-menu" style="font-family:Arial, sans-serif;">
       <h3>Select pocket conformation</h3>
       <label><input type="checkbox" id="p40"> Conformation 1</label><br>
       <label><input type="checkbox" id="p462"> Conformation 2</label><br><br>
@@ -102,95 +102,15 @@ An example of two pockets that share the same trajectory frame are shown here:
   </div>
 
   <script src="https://unpkg.com/ngl@latest/dist/ngl.js"></script>
+  <script src="_static/pocket-viewer.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      // --- configure paths here (try the first; if 404s occur, try the alternative list below) ---
-      var structures = {
-        p40: "_static/pockets/p40_prot-pocket.pdb",
-        p462: "_static/pockets/p462_prot-pocket.pdb"
-      };
-
-      var status1 = document.getElementById('status1');
-      function setStatus(msg, isError) {
-        status1.textContent = msg;
-        status1.style.color = isError ? 'crimson' : '#333';
-        console.log(msg);
-      }
-
-      // Create stage (use DOM element reference)
-      var stage1;
-      try {
-        stage1 = new NGL.Stage(document.getElementById('viewport1'), { backgroundColor: "white" });
-      } catch (e) {
-        setStatus("Error creating NGL stage: " + e.message, true);
-        throw e;
-      }
-
-      window.addEventListener('resize', function() { stage1.handleResize(); }, false);
-
-      var loaded = {}; // store components by name
-
-      // pick distinct colors for quick visual separation
-      var colors = { p40: "red", p462: "blue" };
-
-      // safe loader with logging
-      function loadStructure(name) {
-        setStatus("Loading " + name + " ...");
-        return stage1.loadFile(structures[name]).then(function(comp) {
-          loaded[name] = comp;
-          comp.setName(name);
-          // add a cartoon representation; if you want spheres/surfaces adjust here
-          comp.addRepresentation('cartoon', { color: colors[name] || 'chainname' });
-          comp.addRepresentation('surface', { sele: 'all and not 1-799', opacity: 0.3, color: colors[name] || 'chainname' });
-          comp.autoView();
-          setStatus(name + " loaded.");
-          return comp;
-        }).catch(function(err){
-          setStatus("Failed to load " + name + " — check path and network (see console).", true);
-          console.error("NGL load error for", name, err);
-          throw err;
-        });
-      }
-
-      // toggle function bound to checkboxes
-      function toggleStructure(name, checked) {
-        if (checked) {
-          if (loaded[name]) {
-            loaded[name].setVisibility(true);
-            setStatus(name + " shown.");
-            stage1.autoView();
-          } else {
-            loadStructure(name).then(() => stage1.autoView()).catch(()=>{});
-          }
-        } else {
-          if (loaded[name]) {
-            loaded[name].setVisibility(false);
-            setStatus(name + " hidden.");
-          } else {
-            setStatus(name + " is not loaded yet.");
-          }
-        }
-      }
-
-      // wire checkboxes
-      ['p40','p462'].forEach(function(name){
-        var cb = document.getElementById(name);
-        if (!cb) {
-          console.warn("Checkbox not found for", name);
-          return;
-        }
-        cb.addEventListener('change', function(e){
-          toggleStructure(name, e.target.checked);
-        });
-      });
-
-      document.getElementById('resetView1').addEventListener('click', function() {
-        stage1.autoView();
-      });
-
-      // Helpful: try preloading none, or preload one (uncomment if you want p15 preloaded by default)
-      // loadStructure('p15').catch(()=>{});
-      setStatus("Ready — toggle boxes to load/show structures. Open browser console / network tab if something fails.");
+    pokeViewer({
+      viewport: 'viewport1', status: 'status1', reset: 'resetView1',
+      structures: {
+        p40: '_static/pockets/p40_prot-pocket.pdb',
+        p462: '_static/pockets/p462_prot-pocket.pdb',
+      },
+      colors: { p40: 'red', p462: 'blue' }
     });
   </script>
 
@@ -203,7 +123,7 @@ Two examples of pockets identified through visual inspection are shown below:
   <div style="display:flex; gap:16px; align-items:flex-start;">
     <div id="viewport2" style="width:800px; height:600px; border:1px solid #ccc;"></div>
 
-    <div id="menu" style="font-family:Arial, sans-serif;">
+    <div class="pocket-viewer-menu" style="font-family:Arial, sans-serif;">
       <h3>Select protein conformation</h3>
       <label><input type="checkbox" id="p12"> Conformation 3</label><br>
       <label><input type="checkbox" id="p63"> Conformation 4</label><br><br>
@@ -213,96 +133,14 @@ Two examples of pockets identified through visual inspection are shown below:
     </div>
   </div>
 
-  <script src="https://unpkg.com/ngl@latest/dist/ngl.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      // --- configure paths here (try the first; if 404s occur, try the alternative list below) ---
-      var structures = {
-        p12: "_static/pockets/p12_prot-pocket.pdb",
-        p63: "_static/pockets/p63_prot-pocket.pdb"
-      };
-
-      var status2 = document.getElementById('status2');
-      function setStatus(msg, isError) {
-        status2.textContent = msg;
-        status2.style.color = isError ? 'crimson' : '#333';
-        console.log(msg);
-      }
-
-      // Create stage (use DOM element reference)
-      var stage2;
-      try {
-        stage2 = new NGL.Stage(document.getElementById('viewport2'), { backgroundColor: "white" });
-      } catch (e) {
-        setStatus("Error creating NGL stage: " + e.message, true);
-        throw e;
-      }
-
-      window.addEventListener('resize', function() { stage2.handleResize(); }, false);
-
-      var loaded = {}; // store components by name
-
-      // pick distinct colors for quick visual separation
-      var colors = { p12: "red", p63: "blue" };
-
-      // safe loader with logging
-      function loadStructure(name) {
-        setStatus("Loading " + name + " ...");
-        return stage2.loadFile(structures[name]).then(function(comp) {
-          loaded[name] = comp;
-          comp.setName(name);
-          // add a cartoon representation; if you want spheres/surfaces adjust here
-          comp.addRepresentation('cartoon', { color: colors[name] || 'chainname' });
-          comp.addRepresentation('surface', { sele: 'all and not 1-799', opacity: 0.3, color: colors[name] || 'chainname' });
-          comp.autoView();
-          setStatus(name + " loaded.");
-          return comp;
-        }).catch(function(err){
-          setStatus("Failed to load " + name + " — check path and network (see console).", true);
-          console.error("NGL load error for", name, err);
-          throw err;
-        });
-      }
-
-      // toggle function bound to checkboxes
-      function toggleStructure(name, checked) {
-        if (checked) {
-          if (loaded[name]) {
-            loaded[name].setVisibility(true);
-            setStatus(name + " shown.");
-            stage2.autoView();
-          } else {
-            loadStructure(name).then(() => stage2.autoView()).catch(()=>{});
-          }
-        } else {
-          if (loaded[name]) {
-            loaded[name].setVisibility(false);
-            setStatus(name + " hidden.");
-          } else {
-            setStatus(name + " is not loaded yet.");
-          }
-        }
-      }
-
-      // wire checkboxes
-      ['p12','p63'].forEach(function(name){
-        var cb = document.getElementById(name);
-        if (!cb) {
-          console.warn("Checkbox not found for", name);
-          return;
-        }
-        cb.addEventListener('change', function(e){
-          toggleStructure(name, e.target.checked);
-        });
-      });
-
-      document.getElementById('resetView2').addEventListener('click', function() {
-        stage2.autoView();
-      });
-
-      // Helpful: try preloading none, or preload one (uncomment if you want p15 preloaded by default)
-      // loadStructure('p15').catch(()=>{});
-      setStatus("Ready — toggle boxes to load/show structures. Open browser console / network tab if something fails.");
+    pokeViewer({
+      viewport: 'viewport2', status: 'status2', reset: 'resetView2',
+      structures: {
+        p12: '_static/pockets/p12_prot-pocket.pdb',
+        p63: '_static/pockets/p63_prot-pocket.pdb',
+      },
+      colors: { p12: 'red', p63: 'blue' }
     });
   </script>
 
@@ -329,7 +167,7 @@ Residue definition= [225,290,229,230,231,261,263,250,251,279,248,282,283,221,286
   <div style="display:flex; gap:16px; align-items:flex-start;">
     <div id="viewport3" style="width:800px; height:600px; border:1px solid #ccc;"></div>
 
-    <div id="menu" style="font-family:Arial, sans-serif;">
+    <div class="pocket-viewer-menu" style="font-family:Arial, sans-serif;">
       <h3>Select protein conformation</h3>
       <label><input type="checkbox" id="p15"> Conformation 5</label><br>
       <label><input type="checkbox" id="p26"> Conformation 6</label><br>
@@ -342,99 +180,17 @@ Residue definition= [225,290,229,230,231,261,263,250,251,279,248,282,283,221,286
     </div>
   </div>
 
-  <script src="https://unpkg.com/ngl@latest/dist/ngl.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      // --- configure paths here (try the first; if 404s occur, try the alternative list below) ---
-      var structures = {
-        p15: "_static/pockets/p15_prot-pocket.pdb",
-        p26: "_static/pockets/p26_prot-pocket.pdb",
-        p31: "_static/pockets/p31_prot-pocket.pdb",
-        p34: "_static/pockets/p34_prot-pocket.pdb",
-        p67: "_static/pockets/p67_prot-pocket.pdb"
-      };
-
-      var status3 = document.getElementById('status3');
-      function setStatus(msg, isError) {
-        status3.textContent = msg;
-        status3.style.color = isError ? 'crimson' : '#333';
-        console.log(msg);
-      }
-
-      // Create stage (use DOM element reference)
-      var stage3;
-      try {
-        stage3 = new NGL.Stage(document.getElementById('viewport3'), { backgroundColor: "white" });
-      } catch (e) {
-        setStatus("Error creating NGL stage: " + e.message, true);
-        throw e;
-      }
-
-      window.addEventListener('resize', function() { stage3.handleResize(); }, false);
-
-      var loaded = {}; // store components by name
-
-      // pick distinct colors for quick visual separation
-      var colors = { p15: "red", p26: "blue", p31: "green", p34: "orange", p67: "purple" };
-
-      // safe loader with logging
-      function loadStructure(name) {
-        setStatus("Loading " + name + " ...");
-        return stage3.loadFile(structures[name]).then(function(comp) {
-          loaded[name] = comp;
-          comp.setName(name);
-          // add a cartoon representation; if you want spheres/surfaces adjust here
-          comp.addRepresentation('cartoon', { color: colors[name] || 'chainname' });
-          comp.addRepresentation('surface', { sele: 'all and not 1-799', opacity: 0.3, color: colors[name] || 'chainname' });
-          comp.autoView();
-          setStatus(name + " loaded.");
-          return comp;
-        }).catch(function(err){
-          setStatus("Failed to load " + name + " — check path and network (see console).", true);
-          console.error("NGL load error for", name, err);
-          throw err;
-        });
-      }
-
-      // toggle function bound to checkboxes
-      function toggleStructure(name, checked) {
-        if (checked) {
-          if (loaded[name]) {
-            loaded[name].setVisibility(true);
-            setStatus(name + " shown.");
-            stage3.autoView();
-          } else {
-            loadStructure(name).then(() => stage3.autoView()).catch(()=>{});
-          }
-        } else {
-          if (loaded[name]) {
-            loaded[name].setVisibility(false);
-            setStatus(name + " hidden.");
-          } else {
-            setStatus(name + " is not loaded yet.");
-          }
-        }
-      }
-
-      // wire checkboxes
-      ['p15','p26','p31','p34','p67'].forEach(function(name){
-        var cb = document.getElementById(name);
-        if (!cb) {
-          console.warn("Checkbox not found for", name);
-          return;
-        }
-        cb.addEventListener('change', function(e){
-          toggleStructure(name, e.target.checked);
-        });
-      });
-
-      document.getElementById('resetView3').addEventListener('click', function() {
-        stage3.autoView();
-      });
-
-      // Helpful: try preloading none, or preload one (uncomment if you want p15 preloaded by default)
-      // loadStructure('p15').catch(()=>{});
-      setStatus("Ready — toggle boxes to load/show structures. Open browser console / network tab if something fails.");
+    pokeViewer({
+      viewport: 'viewport3', status: 'status3', reset: 'resetView3',
+      structures: {
+        p15: '_static/pockets/p15_prot-pocket.pdb',
+        p26: '_static/pockets/p26_prot-pocket.pdb',
+        p31: '_static/pockets/p31_prot-pocket.pdb',
+        p34: '_static/pockets/p34_prot-pocket.pdb',
+        p67: '_static/pockets/p67_prot-pocket.pdb',
+      },
+      colors: { p15: 'red', p26: 'blue', p31: 'green', p34: 'orange', p67: 'purple' }
     });
   </script>
 
@@ -450,7 +206,7 @@ Due to benzene scouting, a total of 827,542 pocket conformations were found in t
   <div style="display:flex; gap:16px; align-items:flex-start;">
     <div id="viewport4" style="width:800px; height:600px; border:1px solid #ccc;"></div>
 
-    <div id="menu" style="font-family:Arial, sans-serif;">
+    <div class="pocket-viewer-menu" style="font-family:Arial, sans-serif;">
       <h3>Select protein conformation</h3>
       <label><input type="checkbox" id="p9"> Conformation 10</label><br>
       <label><input type="checkbox" id="p41"> Conformation 11</label><br><br>
@@ -460,96 +216,14 @@ Due to benzene scouting, a total of 827,542 pocket conformations were found in t
     </div>
   </div>
 
-  <script src="https://unpkg.com/ngl@latest/dist/ngl.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      // --- configure paths here (try the first; if 404s occur, try the alternative list below) ---
-      var structures = {
-        p9: "_static/pockets/p9_prot-pocket.pdb",
-        p41: "_static/pockets/p41_prot-pocket.pdb"
-      };
-
-      var status4 = document.getElementById('status4');
-      function setStatus(msg, isError) {
-        status4.textContent = msg;
-        status4.style.color = isError ? 'crimson' : '#333';
-        console.log(msg);
-      }
-
-      // Create stage (use DOM element reference)
-      var stage4;
-      try {
-        stage4 = new NGL.Stage(document.getElementById('viewport4'), { backgroundColor: "white" });
-      } catch (e) {
-        setStatus("Error creating NGL stage: " + e.message, true);
-        throw e;
-      }
-
-      window.addEventListener('resize', function() { stage4.handleResize(); }, false);
-
-      var loaded = {}; // store components by name
-
-      // pick distinct colors for quick visual separation
-      var colors = { p9: "red", p41: "blue" };
-
-      // safe loader with logging
-      function loadStructure(name) {
-        setStatus("Loading " + name + " ...");
-        return stage4.loadFile(structures[name]).then(function(comp) {
-          loaded[name] = comp;
-          comp.setName(name);
-          // add a cartoon representation; if you want spheres/surfaces adjust here
-          comp.addRepresentation('cartoon', { color: colors[name] || 'chainname' });
-          comp.addRepresentation('surface', { sele: 'all and not 1-799', opacity: 0.3, color: colors[name] || 'chainname' });
-          comp.autoView();
-          setStatus(name + " loaded.");
-          return comp;
-        }).catch(function(err){
-          setStatus("Failed to load " + name + " — check path and network (see console).", true);
-          console.error("NGL load error for", name, err);
-          throw err;
-        });
-      }
-
-      // toggle function bound to checkboxes
-      function toggleStructure(name, checked) {
-        if (checked) {
-          if (loaded[name]) {
-            loaded[name].setVisibility(true);
-            setStatus(name + " shown.");
-            stage4.autoView();
-          } else {
-            loadStructure(name).then(() => stage4.autoView()).catch(()=>{});
-          }
-        } else {
-          if (loaded[name]) {
-            loaded[name].setVisibility(false);
-            setStatus(name + " hidden.");
-          } else {
-            setStatus(name + " is not loaded yet.");
-          }
-        }
-      }
-
-      // wire checkboxes
-      ['p9','p41'].forEach(function(name){
-        var cb = document.getElementById(name);
-        if (!cb) {
-          console.warn("Checkbox not found for", name);
-          return;
-        }
-        cb.addEventListener('change', function(e){
-          toggleStructure(name, e.target.checked);
-        });
-      });
-
-      document.getElementById('resetView4').addEventListener('click', function() {
-        stage4.autoView();
-      });
-
-      // Helpful: try preloading none, or preload one (uncomment if you want p15 preloaded by default)
-      // loadStructure('p15').catch(()=>{});
-      setStatus("Ready — toggle boxes to load/show structures. Open browser console / network tab if something fails.");
+    pokeViewer({
+      viewport: 'viewport4', status: 'status4', reset: 'resetView4',
+      structures: {
+        p9: '_static/pockets/p9_prot-pocket.pdb',
+        p41: '_static/pockets/p41_prot-pocket.pdb',
+      },
+      colors: { p9: 'red', p41: 'blue' }
     });
   </script>
 

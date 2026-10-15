@@ -35,6 +35,12 @@ The code lives in its own repository: https://github.com/SibyllaBiotech/poke
 
 - Pages are reStructuredText files in `source/`. Images and tutorial data are in `source/_static/`.
 - `build/` is generated output and is not tracked by git.
-- Commit with your GitHub no-reply address (GitHub → Settings → Emails) so personal addresses
-  do not end up in the public history:
-  `git config user.email "ID+username@users.noreply.github.com"`
+
+## Licence
+
+The text, figures and tutorial data in this repository are © Sibylla Biotech and are
+released under the [Creative Commons Attribution 4.0 International licence](LICENSE)
+(CC BY 4.0): you may copy, adapt and redistribute them, including commercially, as long as
+you credit Sibylla Biotech. Code snippets shown in the documentation may also be used under
+the MIT licence of [Poké](https://github.com/SibyllaBiotech/poke), so no attribution is
+needed to paste an example into your own script.

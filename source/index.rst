@@ -31,7 +31,28 @@ Designed to be used on long molecular dynamics trajectories, but it can be used 
 
 **Get Started**
 
-If you are new to *poké*, explore the following resources to install ``poke`` package, access tutorials and dive into the documentation:
-* :doc:`Getting Started`
-* :doc:`Tutorials`
+If you are new to Poké, start here:
 
+* :doc:`Getting Started` to install the package and run it on a structure or a trajectory
+* :doc:`Tutorials` for a worked example on a cryptic pocket of TEM-1 β-lactamase
+
+**How to cite**
+
+If you use Poké in your research, please cite:
+
+   Colasurdo, E., Boldrini, A., Terruzzi, L., Langini, C., Risueño Fernández, C., Varricchio, C.,
+   Primavera, E., Cassese, E., Patsilinakos, A. & Spagnolli, G. *Poké: Fast and Reliable
+   Neural-Network-Based Identification of Protein Ligandable Sites.* ACS Omega (2026).
+   https://doi.org/10.1021/acsomega.6c04816
+
+**Code and data**
+
+* Source code on GitHub: https://github.com/SibyllaBiotech/poke
+* Source code archived on Zenodo: https://doi.org/10.5281/zenodo.19634786
+* Datasets used in the paper, on Zenodo: https://doi.org/10.5281/zenodo.19635030
+
+**Licence**
+
+Poké is free software released under the `MIT licence
+<https://github.com/SibyllaBiotech/poke/blob/main/LICENSE>`_. The text and figures of this
+guide are released under the `CC BY 4.0 <https://creativecommons.org/licenses/by/4.0/>`_ licence.

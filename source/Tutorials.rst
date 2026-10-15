@@ -88,8 +88,8 @@ An example of two pockets that share the same trajectory frame are shown here:
 
 .. raw:: html
 
-  <div style="display:flex; gap:16px; align-items:flex-start;">
-    <div id="viewport1" style="width:800px; height:600px; border:1px solid #ccc;"></div>
+  <div style="display:flex; flex-wrap:wrap; gap:16px; align-items:flex-start;">
+    <div id="viewport1" style="width:100%; max-width:800px; height:600px; border:1px solid #ccc;"></div>
 
     <div class="pocket-viewer-menu" style="font-family:Arial, sans-serif;">
       <h3>Select pocket conformation</h3>
@@ -120,8 +120,8 @@ Two examples of pockets identified through visual inspection are shown below:
 
 .. raw:: html
 
-  <div style="display:flex; gap:16px; align-items:flex-start;">
-    <div id="viewport2" style="width:800px; height:600px; border:1px solid #ccc;"></div>
+  <div style="display:flex; flex-wrap:wrap; gap:16px; align-items:flex-start;">
+    <div id="viewport2" style="width:100%; max-width:800px; height:600px; border:1px solid #ccc;"></div>
 
     <div class="pocket-viewer-menu" style="font-family:Arial, sans-serif;">
       <h3>Select protein conformation</h3>
@@ -164,8 +164,8 @@ Residue definition= [225,290,229,230,231,261,263,250,251,279,248,282,283,221,286
 
 .. raw:: html
 
-  <div style="display:flex; gap:16px; align-items:flex-start;">
-    <div id="viewport3" style="width:800px; height:600px; border:1px solid #ccc;"></div>
+  <div style="display:flex; flex-wrap:wrap; gap:16px; align-items:flex-start;">
+    <div id="viewport3" style="width:100%; max-width:800px; height:600px; border:1px solid #ccc;"></div>
 
     <div class="pocket-viewer-menu" style="font-family:Arial, sans-serif;">
       <h3>Select protein conformation</h3>
@@ -203,8 +203,8 @@ Due to benzene scouting, a total of 827,542 pocket conformations were found in t
 
 .. raw:: html
 
-  <div style="display:flex; gap:16px; align-items:flex-start;">
-    <div id="viewport4" style="width:800px; height:600px; border:1px solid #ccc;"></div>
+  <div style="display:flex; flex-wrap:wrap; gap:16px; align-items:flex-start;">
+    <div id="viewport4" style="width:100%; max-width:800px; height:600px; border:1px solid #ccc;"></div>
 
     <div class="pocket-viewer-menu" style="font-family:Arial, sans-serif;">
       <h3>Select protein conformation</h3>

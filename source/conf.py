@@ -13,9 +13,10 @@ author = 'Erika Primavera, Emilia Cassese and Sibylla Biotech'
 import pathlib
 from importlib.metadata import PackageNotFoundError, version as _installed_version
 
-# Distribution name of the Poké package these docs are built against.
+# Distribution name of the Poké package these docs are built against: the name used on PyPI
+# and by pip. The import name and the command are still "poke".
 # The version shown on the site is read from the installed package, never typed by hand.
-DIST_NAME = "poke"
+DIST_NAME = "poke-scouter"
 
 try:
     release = _installed_version(DIST_NAME)      # full version, e.g. "0.1.0"

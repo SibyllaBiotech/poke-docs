@@ -5,12 +5,14 @@ Getting Started
 Installation
 ------------
 
-Poké is available as a wheel package for macOS, Windows and Linux on PyPI.
-To install Poké with pip run:
+Poké is available on PyPI under the name ``poke-scouter``.
+To install it with pip run:
 
 .. code-block:: bash
- 
-   python -m pip install poke 
+
+   python -m pip install poke-scouter
+
+The package provides the ``poke`` command and the ``poke`` Python module.
 
 Alternatively, the package can be installed directly from ``github`` as follows:
 

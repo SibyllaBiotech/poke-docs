@@ -10,3 +10,17 @@
 .rst-content img.banner {
     margin-bottom: 2em;
 }
+
+/* Tables: let the cells wrap instead of scrolling the table sideways (the theme sets nowrap),
+   and align every cell to its top, so that the name in the first column lines up with the
+   first line of its description instead of floating in the middle of the row. */
+.rst-content table.docutils td,
+.rst-content table.docutils th {
+    white-space: normal;
+    vertical-align: top;
+}
+
+/* Names and flags in the first column stay on one line. */
+.wy-table-responsive table td:first-child code {
+    white-space: nowrap;
+}

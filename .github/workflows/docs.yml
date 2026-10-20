@@ -1,0 +1,41 @@
+# Builds the Poké user guide on every push and pull request, so that a broken page or a
+# failing code example is caught before it reaches the site. The guide documents the released
+# Poké, so the workflow installs it from PyPI; until the first release there, every run fails
+# at the install step, which is expected.
+name: Build the guide
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install the build tools and the released Poké
+        run: |
+          python -m pip install -r requirements.txt
+          python -m pip install poke-scouter
+
+      - name: Build the site, failing on any warning
+        run: sphinx-build -E -W --keep-going -b html source build/html
+
+      - name: Run the code examples of the guide
+        run: sphinx-build -E -b doctest source build/doctest
+
+      - name: Keep the built site as a downloadable artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: site
+          path: build/html

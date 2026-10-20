@@ -3,6 +3,4 @@
 sphinx
 sphinx-rtd-theme
 sphinxcontrib-bibtex
-sphinx-argparse
-sphinx-copybutton
 myst-parser

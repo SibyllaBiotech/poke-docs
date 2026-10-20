@@ -2,13 +2,19 @@
 Python Package
 ==============
 
-Poké can be used from Python for maximum flexibility. ``Poke.from_mdanalysis`` builds a scouter
-from an MDAnalysis ``AtomGroup`` (as on the command line, the atoms must be protonated and named
-after the CHARMM or Amber convention), and ``get_pockets`` returns one ``Pocket`` object per
-pocket found in the given coordinates. The sample structure used below is a frame from the
-mixed-solvent simulation of the :doc:`Tutorials`, so it still contains benzene molecules;
-Poké has force-field parameters for protein and nucleic-acid residues, cofactors and ions,
-but not for benzene, which is why only the protein is passed to the scouter:
+.. include:: _generated/python-package.md
+   :parser: myst_parser.sphinx_
+
+A complete example
+==================
+
+``Poke.from_mdanalysis`` builds a scouter from an MDAnalysis ``AtomGroup`` (as on the command
+line, the atoms must be protonated and named after the CHARMM or Amber convention), and
+``get_pockets`` returns one ``Pocket`` object per pocket found in the given coordinates. The
+sample structure used below is a frame from the mixed-solvent simulation of the
+:doc:`Tutorials`, so it still contains benzene molecules; Poké has force-field parameters for
+protein and nucleic-acid residues, cofactors and ions, but not for benzene, which is why only
+the protein is passed to the scouter:
 
 .. testcode::
 

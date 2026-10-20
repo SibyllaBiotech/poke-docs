@@ -12,7 +12,9 @@ Welcome to Poké documentation
 
    Getting Started
    Descriptors
+   Outputs
    Filters
+   Structure Preparation
    Python Package
    Plugin
    Tutorials

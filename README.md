@@ -37,6 +37,16 @@ The code lives in its own repository: https://github.com/SibyllaBiotech/poke
    `-W` turns warnings into errors, so a broken link or a page missing from the index fails
    the build instead of going unnoticed.
 
+## Publishing
+
+GitHub Actions builds the site on every push and pull request (`.github/workflows/docs.yml`)
+and publishes it from `main` to https://sibyllabiotech.github.io/poke-docs/. This needs a
+one-time setting in the repository: *Settings → Pages → Build and deployment → Source:
+GitHub Actions*. A second workflow (`.github/workflows/linkcheck.yml`) follows every
+external link once a week and fails when one is dead.
+
+The workflows install Poké from PyPI, so they fail until the first release there.
+
 ## Editing
 
 - Pages are reStructuredText files in `source/`. Images and tutorial data are in `source/_static/`.

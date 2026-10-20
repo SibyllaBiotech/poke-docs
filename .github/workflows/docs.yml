@@ -1,8 +1,9 @@
 # Builds the Poké user guide on every push and pull request, so that a broken page or a
-# failing code example is caught before it reaches the site. The guide documents the released
-# Poké, so the workflow installs it from PyPI; until the first release there, every run fails
-# at the install step, which is expected.
-name: Build the guide
+# failing code example is caught before it reaches the site, and publishes the site to
+# GitHub Pages after every push to main. The guide documents the released Poké, so the
+# workflow installs it from PyPI; until the first release there, every run fails at the
+# install step, which is expected.
+name: Build and publish the guide
 
 on:
   push:
@@ -11,6 +12,11 @@ on:
 
 permissions:
   contents: read
+
+# Never publish two versions at once; the newest push wins.
+concurrency:
+  group: pages
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -34,8 +40,22 @@ jobs:
       - name: Run the code examples of the guide
         run: sphinx-build -E -b doctest source build/doctest
 
-      - name: Keep the built site as a downloadable artifact
-        uses: actions/upload-artifact@v7
+      - name: Keep the built site as the artifact to publish
+        uses: actions/upload-pages-artifact@v5
         with:
-          name: site
           path: build/html
+
+  publish:
+    # Only the main branch goes online; pull requests and other branches stop at the build.
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5

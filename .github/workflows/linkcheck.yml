@@ -1,0 +1,30 @@
+# Once a week, follows every external link in the guide and fails if one is dead, so that a
+# moved page or a retired DOI is noticed. Can also be started by hand from the Actions tab.
+name: Check the links
+
+on:
+  schedule:
+    - cron: "0 6 * * 1"   # every Monday at 06:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  linkcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install the build tools and the released Poké
+        run: |
+          python -m pip install -r requirements.txt
+          python -m pip install poke-scouter
+
+      - name: Follow every external link
+        run: sphinx-build -E -b linkcheck source build/linkcheck

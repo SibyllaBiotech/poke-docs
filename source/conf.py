@@ -38,6 +38,7 @@ extensions = [
     "sphinx.ext.doctest",      # `sphinx-build -b doctest` runs the code examples in the guide
     "myst_parser",             # Markdown support, for the README sections included below
     "poke_cli",                # the CLI Reference tables, built from the installed poke's parser
+    "sphinx.ext.githubpages",  # adds .nojekyll, so GitHub Pages serves the _static folder as is
 ]
 # Code examples run inside source/_static/md, where the sample structure lives, so they can
 # refer to it simply as structure.pdb.
@@ -46,6 +47,12 @@ bibtex_bibfiles = ["refs.bib"]
 bibtex_default_style = "unsrt"
 bibtex_reference_style = "super"
 templates_path = ['_templates']
+
+# -- Link check (sphinx-build -b linkcheck, run weekly by GitHub Actions) ------------------
+# A DOI is meant to redirect to the publisher's page, so that redirect is not a problem.
+linkcheck_allowed_redirects = {r"https://doi\.org/.*": r".*"}
+# Wiley answers every automated request with "403 Forbidden", whatever the link's state.
+linkcheck_ignore = [r"https://doi\.org/10\.1002/med\.70001"]
 exclude_patterns = ['_generated']   # the README sections below are included by pages, never built alone
 
 # -- README sections pulled from the installed package -----------------------

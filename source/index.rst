@@ -15,6 +15,7 @@ Welcome to Poké documentation
    Outputs
    Filters
    Structure Preparation
+   CLI Reference
    Python Package
    Plugin
    Tutorials

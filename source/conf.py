@@ -11,7 +11,10 @@ copyright = ''          # no copyright line in the page footer; the licence is i
 html_show_copyright = False
 author = 'Erika Primavera, Emilia Cassese and Sibylla Biotech'
 import pathlib
+import sys
 from importlib.metadata import PackageNotFoundError, version as _installed_version
+
+sys.path.insert(0, str(pathlib.Path(__file__).parent / "_ext"))   # extensions local to this guide
 
 # Distribution name of the Poké package these docs are built against: the name used on PyPI
 # and by pip. The import name and the command are still "poke".
@@ -34,6 +37,7 @@ extensions = [
     "sphinxcontrib.bibtex",
     "sphinx.ext.doctest",      # `sphinx-build -b doctest` runs the code examples in the guide
     "myst_parser",             # Markdown support, for the README sections included below
+    "poke_cli",                # the CLI Reference tables, built from the installed poke's parser
 ]
 # Code examples run inside source/_static/md, where the sample structure lives, so they can
 # refer to it simply as structure.pdb.

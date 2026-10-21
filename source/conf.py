@@ -140,7 +140,7 @@ readme_sections = _write_readme_sections()
 html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
 html_css_files = ['poke.css']
-html_logo = 'img/compress_light.png'
+html_logo = 'img/sidebar-logo.svg'
 html_favicon = '_static/favicon.ico'
 
 html_sidebars = {

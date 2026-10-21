@@ -20,7 +20,7 @@ Welcome to the Poké user guide
    Plugin
    Tutorials
 
-.. image:: img/poke-banner.png
+.. image:: img/poke-banner.svg
    :alt: banner
    :width: 800px
    :align: center

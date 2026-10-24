@@ -1,8 +1,3 @@
-.. poké documentation master file, created by
-   sphinx-quickstart on Tue Jul 15 12:04:06 2025.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
 Welcome to the Poké user guide
 ==============================
 
@@ -28,9 +23,13 @@ Welcome to the Poké user guide
 
 This guide documents Poké |release|.
 
-**Poké scouter** is a blazing fast pocket scouter based on CHARMM forcefield. It uses an energy-based approach to identify the low-energy regions of the protein and it is able to compute a set of descriptors for each pocket useful to characterize it. The descriptors are used then by a neural network model to assign a druggability score to the pocket.
+**Poké** is a high-performance pocket scouting engine. It uses an energy-based approach to
+identify low-energy regions on protein surfaces. These regions are characterized by a set of
+physical descriptors, which are used by a neural network to assign a ligandability score to
+the pocket.
 
-Designed to be used on long molecular dynamics trajectories, but it can be used also on single frames.
+It is designed to be used on long molecular dynamics trajectories, but it works equally well
+on single frames.
 
 **Get Started**
 
@@ -51,6 +50,7 @@ If you use Poké in your research, please cite:
 **Code and data**
 
 * Source code on GitHub: https://github.com/SibyllaBiotech/poke
+* Source of this guide on GitHub: https://github.com/SibyllaBiotech/poke-docs
 * Source code archived on Zenodo: https://doi.org/10.5281/zenodo.19634786
 * Datasets used in the paper, on Zenodo: https://doi.org/10.5281/zenodo.19635030
 

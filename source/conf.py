@@ -51,8 +51,12 @@ templates_path = ['_templates']
 # -- Link check (sphinx-build -b linkcheck, run weekly by GitHub Actions) ------------------
 # A DOI is meant to redirect to the publisher's page, so that redirect is not a problem.
 linkcheck_allowed_redirects = {r"https://doi\.org/.*": r".*"}
-# Wiley answers every automated request with "403 Forbidden", whatever the link's state.
-linkcheck_ignore = [r"https://doi\.org/10\.1002/med\.70001"]
+# Wiley and ACS answer every automated request with "403 Forbidden", whatever the link's
+# state.
+linkcheck_ignore = [
+    r"https://doi\.org/10\.1002/med\.70001",          # Wiley, cited in the tutorial
+    r"https://doi\.org/10\.1021/acsomega\.6c04816",   # ACS Omega, the Poké paper
+]
 exclude_patterns = ['_generated']   # the README sections below are included by pages, never built alone
 
 # -- README sections pulled from the installed package -----------------------

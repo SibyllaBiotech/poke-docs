@@ -1,34 +1,28 @@
 # Poké user guide
 
-Source of the Poké documentation site, built with [Sphinx](https://www.sphinx-doc.org/).
-The code lives in its own repository: https://github.com/SibyllaBiotech/poke
+Source of the Poké user guide, built with [Sphinx](https://www.sphinx-doc.org/) and published at https://sibyllabiotech.github.io/poke-docs/.
+The Poké software repository is: https://github.com/SibyllaBiotech/poke
 
 ## Build the site on your computer
 
-1. Create a Python environment and install the build tools:
+1. Create a Python environment and install the build tools and Poké. The build reads the version and the command-line help from the installed package:
 
    ```
    python -m venv .venv
    source .venv/bin/activate        # Windows: .venv\Scripts\activate
-   pip install -r requirements.txt
+   pip install -r requirements.txt poke-scouter
    ```
 
-2. Install Poké itself. The build reads the version and the command-line help from the
-   installed package. Until the first PyPI release, install it from a clone of the code
-   repository placed next to this one:
+   To document a version of Poké that is not released yet, install it from a clone of the code repository instead (`pip install -e ../poke`).
 
-   ```
-   pip install -e ../poke
-   ```
-
-3. Build and open the site:
+2. Build and open the site:
 
    ```
    sphinx-build -W --keep-going -b html source build/html
    open build/html/index.html       # Linux: xdg-open, Windows: start
    ```
 
-4. Run the code examples in the guide (they execute against the installed Poké):
+3. Run the code examples in the guide (they execute against the installed Poké):
 
    ```
    sphinx-build -b doctest source build/doctest
@@ -39,13 +33,9 @@ The code lives in its own repository: https://github.com/SibyllaBiotech/poke
 
 ## Publishing
 
-GitHub Actions builds the site on every push and pull request (`.github/workflows/docs.yml`)
-and publishes it from `main` to https://sibyllabiotech.github.io/poke-docs/. This needs a
-one-time setting in the repository: *Settings → Pages → Build and deployment → Source:
-GitHub Actions*. A second workflow (`.github/workflows/linkcheck.yml`) follows every
-external link once a week and fails when one is dead.
-
-The workflows install Poké from PyPI, so they fail until the first release there.
+Every push to `main` is built and published to GitHub Pages by the workflow in
+`.github/workflows/docs.yml`; pull requests are built but not published. Once a week,
+`.github/workflows/linkcheck.yml` checks that the external links still work.
 
 ## Editing
 

@@ -1,8 +1,7 @@
 # Builds the Poké user guide on every push and pull request, so that a broken page or a
 # failing code example is caught before it reaches the site, and publishes the site to
 # GitHub Pages after every push to main. The guide documents the released Poké, so the
-# workflow installs it from PyPI; until the first release there, every run fails at the
-# install step, which is expected.
+# workflow installs it from PyPI.
 name: Build and publish the guide
 
 on:

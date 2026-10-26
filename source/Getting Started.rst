@@ -11,7 +11,7 @@ Poké is available on PyPI under the name ``poke-scouter``. To install it with p
 
    python -m pip install poke-scouter
 
-The package provides the ``poke`` command and the ``poke`` Python module.
+The package provides the ``poke`` command and the ``poke`` Python module. It requires Python 3.11 or later.
 
 Alternatively, the package can be installed directly from GitHub:
 
@@ -31,7 +31,7 @@ Basic Examples
 Single Structure
 ''''''''''''''''
 
-Poké can be used on a single structure (pdb, gro, or pdbqt) with the following command:
+Poké can be used on a single structure (pdb, cif, mmcif, gro, or pdbqt) with the following command:
 
 .. code-block:: bash
 
@@ -91,6 +91,9 @@ extract the frames with a pocket and keep the ten best pockets by score:
 
 Pockets can also be filtered by their properties or by the residues they involve; see
 :doc:`Filters`.
+
+A file with several models, such as an NMR ensemble in PDB or mmCIF format, is read like a
+trajectory: each model is a frame.
 
 Options
 '''''''
